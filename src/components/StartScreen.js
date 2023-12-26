@@ -12,4 +12,4 @@ const StartScren = () => {
   )
 }
 
-export default StartScren
+export default StartScren;
