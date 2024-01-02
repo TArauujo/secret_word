@@ -37,7 +37,10 @@ function App() {
     console.log(category);
 
     //pick a random word
-    const word = words[category][Math.floor(Math.random() * words[category].length)]
+    const word = 
+      words[category][Math.floor(Math.random() * words[category].length)]
+
+    console.log(word);
   };
 
   //start the secret word game
