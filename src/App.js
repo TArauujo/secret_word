@@ -41,6 +41,8 @@ function App() {
       words[category][Math.floor(Math.random() * words[category].length)]
 
     console.log(word);
+
+    // PAREI EM 06:14
   };
 
   //start the secret word game
