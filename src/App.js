@@ -58,8 +58,9 @@ function App() {
     const { word, category } = pickWordAndCategory();
 
     // create an array of letters
-    let wordLetters = word.split("")
-    wordLetters = wordLetters.map((l) => l.toLowerCase())
+    let wordLetters = word.split("");
+
+    wordLetters = wordLetters.map((l) => l.toLowerCase());
 
 
     console.log(word, category);
@@ -68,7 +69,7 @@ function App() {
     //fill states
     setPickedWord(word);
     setPickedCategory(category);
-    setLetters(letters);
+    setLetters(wordLetters);
     
     setGameStage(stages[1].name)
   };
@@ -88,13 +89,13 @@ function App() {
       {gameStage === "start" && <StartScreen startGame = {startGame}/>}
       {gameStage === "game" && (
         <Game verifyLetter = {verifyLetter}
-          pickedWord = {pickedWord} 
-          pickedCategory = {pickedCategory} 
-          letters = {letters} 
-          guessedLetters = {guessedLetters} 
-          wrongLetters = {wrongLetters} 
-          guesses = {guesses} 
-          score = {score}
+        pickedWord = {pickedWord} 
+        pickedCategory = {pickedCategory} 
+        letters = {letters} 
+        guessedLetters = {guessedLetters} 
+        wrongLetters = {wrongLetters} 
+        guesses = {guesses} 
+        score = {score}
         />
       )}
       {gameStage === "end" && <GameOver retry = {retry}/>}

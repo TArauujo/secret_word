@@ -7,7 +7,7 @@
 }
 
 .tip span{
-    color: #ECFA00;
+    color: #ecfa00;
 }
 
 .wordContainer{
@@ -29,7 +29,7 @@
     font-weight: bold;
 }
 
-.letterContainer{
+.letterContainer p{
     margin-bottom: 1.2em;
 }
 
