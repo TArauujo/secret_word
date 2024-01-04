@@ -27,6 +27,10 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState("");
   const [letters, setLetters] =  useState([]);
 
+  const [guessedLetters, setGuessedLetters] = useState([]); //state para as letras adivinhadas
+  const [wrongLetters, setWrongLetters] = useState([]); //state para as letras erradas
+  const [guesses, setGuesses] = useState(3); //state para as tentativas, dentro do parenteses está o número de tentativas
+  const [score, setScore] = useState(0);
 
   const pickWordAndCategory = () => {
     //pick a random category
@@ -82,7 +86,7 @@ function App() {
   return (
     <div className="App">
       {gameStage === "start" && <StartScreen startGame = {startGame}/>}
-      {gameStage === "game" && <Game verifyLetter = {verifyLetter}/>}
+      {gameStage === "game" && <Game verifyLetter = {verifyLetter} pickedWord = {pickedWord} pickedCategory = {pickedCategory} letters = {letters} guessedLetters = {guessedLetters} wrongLetters = {wrongLetters} guesses = {guesses} score = {score}/>}
       {gameStage === "end" && <GameOver retry = {retry}/>}
 
     </div>
