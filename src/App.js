@@ -32,7 +32,7 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState([]); //state para as letras adivinhadas
   const [wrongLetters, setWrongLetters] = useState([]); //state para as letras erradas
   const [guesses, setGuesses] = useState(guessesQty); //state para as tentativas, dentro do parenteses está o número de tentativas
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(68);
 
   const pickWordAndCategory = () => {
     //pick a random category
@@ -102,8 +102,6 @@ function App() {
 
       setGuesses((actualGuesses) => actualGuesses - 1);
     }
-
-    
   };
 
   const clearLetterStates = () => {
@@ -112,10 +110,10 @@ function App() {
   };
 
     useEffect(() => {
-      //reset all states
-      clearLetterStates()
-
+      
       if(guesses <= 0){
+        //reset all states
+        clearLetterStates()
 
         setGameStage(stages[2].name);
       }
@@ -142,7 +140,7 @@ function App() {
         score = {score}
         />
       )}
-      {gameStage === "end" && <GameOver retry = {retry}/>}
+      {gameStage === "end" && <GameOver retry = {retry} score = {score}/>}
 
     </div>
   );
