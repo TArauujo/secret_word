@@ -16,7 +16,9 @@ const stages = [
   {id: 1, name: "start"},
   {id: 2, name: "game"},
   {id: 3, name: "end"},
-]
+];
+
+const guessesQty = 3; 
 
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
@@ -29,7 +31,7 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState([]); //state para as letras adivinhadas
   const [wrongLetters, setWrongLetters] = useState([]); //state para as letras erradas
-  const [guesses, setGuesses] = useState(3); //state para as tentativas, dentro do parenteses está o número de tentativas
+  const [guesses, setGuesses] = useState(guessesQty); //state para as tentativas, dentro do parenteses está o número de tentativas
   const [score, setScore] = useState(0);
 
   const pickWordAndCategory = () => {
@@ -79,7 +81,9 @@ function App() {
     const normalizedLetter = letter.toLowerCase() //passando a letra para maiuscula
 
     //check if letter has already been utilized
-    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)
+    if(
+      guessedLetters.includes(normalizedLetter) || 
+      wrongLetters.includes(normalizedLetter)
     ){
       return;
     }
@@ -91,19 +95,36 @@ function App() {
         normalizedLetter,
       ]);
     }else{
-      setGuessedLetters((actualWrongLetters) => [
+      setWrongLetters((actualWrongLetters) => [
         ...actualWrongLetters, 
         normalizedLetter,
       ]);
+
+      setGuesses((actualGuesses) => actualGuesses - 1);
     }
 
     
   };
-    console.log(guessedLetters);
-    console.log(wrongLetters);
+
+  const clearLetterStates = () => {
+    setGuessedLetters([]);
+    setWrongLetters([]);
+  };
+
+    useEffect(() => {
+      //reset all states
+      clearLetterStates()
+
+      if(guesses <= 0){
+
+        setGameStage(stages[2].name);
+      }
+    }, [guesses])
 
   //restarts the game
   const retry = () => {
+    setScore(0);
+    setGuesses(guessesQty);
     setGameStage(stages[0].name)
   };
 
