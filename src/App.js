@@ -109,15 +109,31 @@ function App() {
     setWrongLetters([]);
   };
 
-    useEffect(() => {
-      
-      if(guesses <= 0){
-        //reset all states
-        clearLetterStates()
+  //check if guesses ended
+  useEffect(() => {
+    if(guesses <= 0){
+      //reset all states
+      clearLetterStates()
 
-        setGameStage(stages[2].name);
-      }
-    }, [guesses])
+      setGameStage(stages[2].name);
+    }
+  }, [guesses]);
+
+  //check win condition
+  useEffect(() => {
+
+    const uniqueLetters = [... new Set(letters)]
+
+    //win condition
+    if(guessedLetters.length === uniqueLetters.length){
+      //add score
+      setScore((actualScore) => actualScore += 100)
+
+      //restart game with new word
+      startGame();
+    }
+
+  }, [guessedLetters])
 
   //restarts the game
   const retry = () => {
